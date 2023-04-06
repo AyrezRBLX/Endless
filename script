@@ -300,6 +300,23 @@ local Toggle = page4:CreateToggle({
         end
     end,
 })
+local Toggle = page4:CreateToggle({
+    Name = 'Teleport to Last Position on Death?',
+    CurrentValue = false,
+    Flag = 'AutoRespawnToggle',
+    Callback = function(t)
+        getgenv().AutoRespawn = t;
+        while task.wait() do 
+            if not getgenv().AutoRespawn then break; end
+            repeat task.wait() until s.Players.LocalPlayer.Character:FindFirstChild('Humanoid')
+            if s.Players.LocalPlayer.Character.Humanoid.Health > 1 then 
+                if s.Players.LocalPlayer.PlayerGui.IntroGui.Enabled then 
+                    main.clickButton(s.Players.LocalPlayer.PlayerGui.IntroGui.PlayBtn)
+                end
+            end
+        end
+    end,
+})
 teleport2 = page4:CreateSection('Strength')
 local path_fist_training_areas = game:GetService('Workspace').Map:WaitForChild('Training_Collisions').FistStrength
 local fist_strength_areas = {}
