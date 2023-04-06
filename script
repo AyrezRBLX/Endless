@@ -320,8 +320,12 @@ local Toggle2 = page4:CreateToggle({
         end
     end,
 })
-teleport2 = page4:CreateSection('Strength')
+
 local path_fist_training_areas = game:GetService('Workspace').Map:WaitForChild('Training_Collisions').FistStrength
+local path_body_training_areas = game:GetService('Workspace').Map:WaitForChild('Training_Collisions').BodyToughness
+local path_psychic_training_areas = game:GetService('Workspace').Map:WaitForChild('Training_Collisions').PsychicPower
+
+teleport2 = page4:CreateSection('Strength')
 local fist_strength_areas = {}
 for i,v in pairs(path_fist_training_areas:GetChildren()) do
     table.insert(fist_strength_areas,v.Name)
@@ -333,6 +337,26 @@ local Dropdown = page4:CreateDropdown({
     Flag = 'FistTPSelect', 
     Callback = function(t)
         getgenv().TargetFSArea = t;
+    end,
+})
+--
+local AutoFarm1 = page4:CreateToggle({
+    Name = 'Auto Farm',
+    CurrentValue = false,
+    Flag = 'AutoTeleportToAreaToggle',
+    Callback = function(t)
+        getgenv().AutoFarmFist = t;
+        while task.wait() do 
+            if not getgenv().AutoFarmFist then break end
+            if getgenv().TargetFSArea then
+                for i,v in pairs(path_fist_training_areas:GetChildren()) do
+                    if getgenv().TargetFSArea == v.Name then
+                        task.wait(1)
+                        coroutine.wrap(main.toPos)(v.CFrame)
+                    end
+                end
+            end
+        end
     end,
 })
 -- 
@@ -348,7 +372,6 @@ local Button = page4:CreateButton({
     end,
 })
 teleport3 = page4:CreateSection('Body Toughness')
-local path_body_training_areas = game:GetService('Workspace').Map:WaitForChild('Training_Collisions').BodyToughness
 local body_areas = {}
 for i,v in pairs(path_body_training_areas:GetChildren()) do
     table.insert(body_areas,v.Name)
@@ -360,6 +383,25 @@ local Dropdown = page4:CreateDropdown({
     Flag = 'BodyTPSelect',
     Callback = function(t)
         getgenv().TargetBTArea = t;
+    end,
+})
+local AutoFarm1 = page4:CreateToggle({
+    Name = 'Auto Farm',
+    CurrentValue = false,
+    Flag = 'AutoTeleportToAreaToggle2',
+    Callback = function(t)
+        getgenv().AutoFarmBT = t;
+        while task.wait() do 
+            if not getgenv().AutoFarmBT then break end
+            if getgenv().TargetBTArea then
+                for i,v in pairs(path_body_training_areas:GetChildren()) do
+                    if getgenv().TargetBTArea == v.Name then
+                        task.wait(1)
+                        coroutine.wrap(main.toPos)(v.CFrame)
+                    end
+                end
+            end
+        end
     end,
 })
 -- 
@@ -376,7 +418,6 @@ local Button = page4:CreateButton({
 })
 
 teleport4 = page4:CreateSection('Psychic')
-local path_psychic_training_areas = game:GetService('Workspace').Map:WaitForChild('Training_Collisions').PsychicPower
 local psychic_areas = {}
 for i,v in pairs(path_psychic_training_areas:GetChildren()) do
     table.insert(psychic_areas,v.Name)
@@ -388,6 +429,25 @@ local Dropdown = page4:CreateDropdown({
     Flag = 'PsychicTPSelect',
     Callback = function(t)
         getgenv().TargetPPArea = t;
+    end,
+})
+local AutoFarm3 = page4:CreateToggle({
+    Name = 'Auto Farm',
+    CurrentValue = false,
+    Flag = 'AutoTeleportToAreaToggle3',
+    Callback = function(t)
+        getgenv().AutoFarmPP = t;
+        while task.wait() do 
+            if not getgenv().AutoFarmPP then break end
+            if getgenv().TargetPPArea then
+                for i,v in pairs(path_psychic_training_areas:GetChildren()) do
+                    if getgenv().TargetPPArea == v.Name then
+                        task.wait(1)
+                        coroutine.wrap(main.toPos)(v.CFrame)
+                    end
+                end
+            end
+        end
     end,
 })
 -- 
