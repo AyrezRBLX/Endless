@@ -308,12 +308,15 @@ local Toggle2 = page4:CreateToggle({
         getgenv().AutoRespawn = t;
         while task.wait() do 
             if not getgenv().AutoRespawn then break; end
-            repeat task.wait() until s.Players.LocalPlayer.Character:FindFirstChild('Humanoid')
-            if s.Players.LocalPlayer.Character.Humanoid.Health > 1 then 
-                if s.Players.LocalPlayer.PlayerGui.IntroGui.Enabled then 
-                    main.clickButton(s.Players.LocalPlayer.PlayerGui.IntroGui.PlayBtn)
-                end
-            end
+	    local local_player = s.Players.LocalPlayer
+            local character =  local_player.Character
+	    if character then
+	        if character:FindFirstChild('Humanoid') and character.Humanoid.Health > 1 then 
+		    if local_player.PlayerGui.IntroGui.Enabled then 
+			main.clickButton(local_player.PlayerGui.IntroGui.PlayBtn)
+		    end
+		end
+	    end
         end
     end,
 })
