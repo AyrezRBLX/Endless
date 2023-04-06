@@ -301,7 +301,7 @@ local Toggle = page4:CreateToggle({
     end,
 })
 local Toggle = page4:CreateToggle({
-    Name = 'Teleport to Last Position on Death?',
+    Name = 'Auto Respawn',
     CurrentValue = false,
     Flag = 'AutoRespawnToggle',
     Callback = function(t)
