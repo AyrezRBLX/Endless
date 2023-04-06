@@ -279,28 +279,28 @@ local Toggle = page1:CreateToggle({
     end,
 })
 --
-teleport1 = page4:CreateSection('Teleport to Last Position on Death')
-local Toggle = page4:CreateToggle({
-    Name = 'Teleport to Last Position on Death?',
-    CurrentValue = false,
-    Flag = 'LastPositionOnDeathToggle',
-    Callback = function(t)
-        getgenv().ComeAfterDeath = t;
-        while task.wait() do 
-            if not getgenv().ComeAfterDeath then break; end
-            repeat task.wait() until s.Players.LocalPlayer.Character:FindFirstChild('Humanoid')
-            if s.Players.LocalPlayer.Character.Humanoid.Health <= 1 then 
-                local pos = s.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
-                if s.Players.LocalPlayer.PlayerGui.IntroGui.Enabled then 
-                    main.clickButton(s.Players.LocalPlayer.PlayerGui.IntroGui.PlayBtn)
-                    task.wait(1.25)
-                    s.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-                end
-            end
-        end
-    end,
-})
-local Toggle = page4:CreateToggle({
+teleport1 = page4:CreateSection('Others')
+--local Toggle = page4:CreateToggle({
+--    Name = 'Teleport to Last Position on Death?',
+--    CurrentValue = false,
+--    Flag = 'LastPositionOnDeathToggle',
+--    Callback = function(t)
+--        getgenv().ComeAfterDeath = t;
+--        while task.wait() do 
+--            if not getgenv().ComeAfterDeath then break; end
+--            repeat task.wait() until s.Players.LocalPlayer.Character:FindFirstChild('Humanoid')
+--            if s.Players.LocalPlayer.Character.Humanoid.Health <= 1 then 
+--               local pos = s.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
+--                if s.Players.LocalPlayer.PlayerGui.IntroGui.Enabled then 
+--                    main.clickButton(s.Players.LocalPlayer.PlayerGui.IntroGui.PlayBtn)
+--                    task.wait(1.25)
+--                    s.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+--                end
+--            end
+--        end
+--    end,
+--})
+local Toggle2 = page4:CreateToggle({
     Name = 'Auto Respawn',
     CurrentValue = false,
     Flag = 'AutoRespawnToggle',
