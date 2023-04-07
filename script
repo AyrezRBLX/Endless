@@ -2,7 +2,7 @@ repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer.Character;
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
 local win = Rayfield:CreateWindow({
-   Name = 'SPTS: Endless v1.03 [STABLE]',
+   Name = 'SPTS: Endless v1.0.4 (On-line)',
    LoadingTitle = 'SPTS: Endless',
    LoadingSubtitle = 'by Ayrez ┃ Ayrez#0909',
    ConfigurationSaving = {
@@ -336,7 +336,7 @@ local Dropdown = page4:CreateDropdown({
     CurrentOption = 'None',
     Flag = 'FistTPSelect', 
     Callback = function(t)
-        getgenv().TargetFSArea = t;
+        getgenv().TargetFSArea = typeof(t) == 'table' and t[1] or t;
     end,
 })
 --
@@ -382,10 +382,10 @@ local Dropdown = page4:CreateDropdown({
     CurrentOption = 'None',
     Flag = 'BodyTPSelect',
     Callback = function(t)
-        getgenv().TargetBTArea = t;
+        getgenv().TargetBTArea = typeof(t) == 'table' and t[1] or t;
     end,
 })
-local AutoFarm1 = page4:CreateToggle({
+local AutoFarm2 = page4:CreateToggle({
     Name = 'Auto Farm',
     CurrentValue = false,
     Flag = 'AutoTeleportToAreaToggle2',
@@ -395,6 +395,7 @@ local AutoFarm1 = page4:CreateToggle({
             if not getgenv().AutoFarmBT then break end
             if getgenv().TargetBTArea then
                 for i,v in pairs(path_body_training_areas:GetChildren()) do
+                    print(getgenv().TargetBTArea,v.name)
                     if getgenv().TargetBTArea == v.Name then
                         task.wait(1)
                         coroutine.wrap(main.toPos)(v.CFrame)
@@ -428,7 +429,7 @@ local Dropdown = page4:CreateDropdown({
     CurrentOption = 'None',
     Flag = 'PsychicTPSelect',
     Callback = function(t)
-        getgenv().TargetPPArea = t;
+        getgenv().TargetPPArea = typeof(t) == 'table' and t[1] or t;
     end,
 })
 local AutoFarm3 = page4:CreateToggle({
